@@ -21,7 +21,7 @@ jobs:
     - name: ⚙️ Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: 8.x
 
     - name: 🧹 Clean
       run: dotnet clean "${{ env.PROJECT_PATH }}${{ env.SOLUTION_FILE }}" -c Release && dotnet nuget locals all --clear
