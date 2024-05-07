@@ -1,0 +1,39 @@
+name: .NET
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    env:
+        PROJECT_PATH: ./src/server/
+        SOLUTION_FILE: Modular Dotnet Boilerplate.sln
+        CONFIGURATION: Release
+    steps:
+    - name: 🛒 Checkout repository
+      uses: actions/checkout@v2
+      
+    - name: ⚙️ Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x
+
+    - name: 🧹 Clean
+      run: dotnet clean "${{ env.PROJECT_PATH }}${{ env.SOLUTION_FILE }}" -c Release && dotnet nuget locals all --clear
+
+    - name: 🔁 Restore dependencies
+      run: dotnet restore "${{ env.SOLUTION_FILE }}" 
+      working-directory: src/server
+      
+    - name: 🛠️ Build
+      run: dotnet build "${{ env.SOLUTION_FILE }}" --configuration ${{ env.CONFIGURATION }}  --no-restore
+      working-directory: src/server
+
+    - name: 🧪 Run unit tests 
+      run: dotnet test "${{ env.SOLUTION_FILE }}" --no-build
+      working-directory: src/server
