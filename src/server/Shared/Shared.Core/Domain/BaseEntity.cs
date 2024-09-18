@@ -14,12 +14,7 @@ namespace Shared.Core.Domain
 {
     public abstract class BaseEntity : IEntity<Guid>, IBaseEntity
     {
-        public Guid Id { get; set; }
-
-        protected BaseEntity()
-        {
-            Id = Guid.NewGuid();
-        }
+        public Guid Id { get; set; } = Guid.NewGuid();
 
         private List<Event> _domainEvents;
 

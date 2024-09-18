@@ -10,12 +10,14 @@ using Shared.Infrastructure.Persistence;
 
 namespace Modules.EmployeeManagement.Infrastructure.Persistence
 {
-    public class EmployeeManagementDbContext : ModuleDbContext, IStaffManagementDbContext
+    public class EmployeeManagementDbContext(
+        DbContextOptions options,
+        IMediator mediator,
+        IEventLogger eventLogger,
+        IOptions<PersistenceSettings> persistenceOptions,
+        IJsonSerializer json)
+        : ModuleDbContext(options, mediator, eventLogger, persistenceOptions, json), IStaffManagementDbContext
     {
-        public EmployeeManagementDbContext(DbContextOptions options, IMediator mediator, IEventLogger eventLogger, IOptions<PersistenceSettings> persistenceOptions, IJsonSerializer json) : base(options, mediator, eventLogger, persistenceOptions, json)
-        {
-        }
-
         public DbSet<StaffMember> StaffMembers { get; set; }
 
         public StaffTask StaffTasks { get; set; }

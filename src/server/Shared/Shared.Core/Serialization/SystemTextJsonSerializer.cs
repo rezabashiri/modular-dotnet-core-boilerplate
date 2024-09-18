@@ -13,14 +13,9 @@ using Shared.Core.Interfaces.Serialization;
 
 namespace Shared.Core.Serialization
 {
-    public class SystemTextJsonSerializer : IJsonSerializer
+    public class SystemTextJsonSerializer(IOptions<JsonSerializerSettingsOptions> options) : IJsonSerializer
     {
-        private readonly JsonSerializerOptions _options;
-
-        public SystemTextJsonSerializer(IOptions<JsonSerializerSettingsOptions> options)
-        {
-            _options = options.Value.JsonSerializerOptions;
-        }
+        private readonly JsonSerializerOptions _options = options.Value.JsonSerializerOptions;
 
         public T Deserialize<T>(string data, IJsonSerializerSettingsOptions options = null)
             => JsonSerializer.Deserialize<T>(data, options?.JsonSerializerOptions ?? _options);

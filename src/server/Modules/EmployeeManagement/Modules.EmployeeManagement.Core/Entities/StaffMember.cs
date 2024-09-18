@@ -15,7 +15,7 @@ namespace Modules.EmployeeManagement.Core.Entities
         public string Family { get; set; }
         public DateTime EmployeedAt { get; set; }
 
-        public ICollection<StaffTask> StaffTasks { get; set; }
+        public ICollection<StaffTask> StaffTasks { get; set; } = new HashSet<StaffTask>();
 
         public static StaffMember InitializeStaff() => new StaffMember() { EmployeedAt = DateTime.UtcNow };
 
@@ -25,11 +25,6 @@ namespace Modules.EmployeeManagement.Core.Entities
             {
                 StaffTasks.Add(staffTask);
             }
-        }
-
-        public StaffMember() : base()
-        {
-            StaffTasks = new HashSet<StaffTask>();
         }
     }
 }

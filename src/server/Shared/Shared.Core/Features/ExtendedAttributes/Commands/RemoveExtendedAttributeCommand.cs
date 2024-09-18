@@ -14,14 +14,10 @@ using Shared.Core.Wrapper;
 namespace Shared.Core.Features.ExtendedAttributes.Commands
 {
     // ReSharper disable once UnusedTypeParameter
-    public class RemoveExtendedAttributeCommand<TEntityId, TEntity> : IRequest<Result<Guid>>
+    public class RemoveExtendedAttributeCommand<TEntityId, TEntity>(Guid entityExtendedAttributeId)
+        : IRequest<Result<Guid>>
         where TEntity : class, IEntity<TEntityId>
     {
-        public Guid Id { get; }
-
-        public RemoveExtendedAttributeCommand(Guid entityExtendedAttributeId)
-        {
-            Id = entityExtendedAttributeId;
-        }
+        public Guid Id { get; } = entityExtendedAttributeId;
     }
 }

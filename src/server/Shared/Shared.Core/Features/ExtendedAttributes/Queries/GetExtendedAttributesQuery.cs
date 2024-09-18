@@ -17,29 +17,21 @@ using Shared.DTOs.ExtendedAttributes;
 
 namespace Shared.Core.Features.ExtendedAttributes.Queries
 {
-    public class GetExtendedAttributesQuery<TEntityId, TEntity> : IRequest<PaginatedResult<GetExtendedAttributesResponse<TEntityId>>>
+    public class GetExtendedAttributesQuery<TEntityId, TEntity>(
+        PaginatedExtendedAttributeFilter<TEntityId, TEntity> filter)
+        : IRequest<PaginatedResult<GetExtendedAttributesResponse<TEntityId>>>
         where TEntity : class, IEntity<TEntityId>
     {
-        public int PageNumber { get; }
+        public int PageNumber { get; } = filter.PageNumber;
 
-        public int PageSize { get; }
+        public int PageSize { get; } = filter.PageSize;
 
-        public string? SearchString { get; }
+        public string? SearchString { get; } = filter.SearchString;
 
-        public string[] OrderBy { get; }
+        public string[] OrderBy { get; } = new OrderByConverter().Convert(filter.OrderBy);
 
-        public TEntityId? EntityId { get; }
+        public TEntityId? EntityId { get; } = filter.EntityId;
 
-        public ExtendedAttributeType? Type { get; }
-
-        public GetExtendedAttributesQuery(PaginatedExtendedAttributeFilter<TEntityId, TEntity> filter)
-        {
-            PageNumber = filter.PageNumber;
-            PageSize = filter.PageSize;
-            SearchString = filter.SearchString;
-            OrderBy = new OrderByConverter().Convert(filter.OrderBy);
-            EntityId = filter.EntityId;
-            Type = filter.Type;
-        }
+        public ExtendedAttributeType? Type { get; } = filter.Type;
     }
 }

@@ -12,12 +12,10 @@ using Shared.Core.Features.ExtendedAttributes.Commands.Validators;
 
 namespace Modules.Identity.Core.Features.ExtendedAttributes.Validators.Users
 {
-    public class RemoveUserExtendedAttributeCommandValidator : RemoveExtendedAttributeCommandValidator<string, BoilerplateUser>
+    public class RemoveUserExtendedAttributeCommandValidator(
+        IStringLocalizer<RemoveUserExtendedAttributeCommandValidator> localizer)
+        : RemoveExtendedAttributeCommandValidator<string, BoilerplateUser>(localizer)
     {
-        public RemoveUserExtendedAttributeCommandValidator(IStringLocalizer<RemoveUserExtendedAttributeCommandValidator> localizer)
-            : base(localizer)
-        {
-            // you can override the validation rules here
-        }
+        // you can override the validation rules here
     }
 }

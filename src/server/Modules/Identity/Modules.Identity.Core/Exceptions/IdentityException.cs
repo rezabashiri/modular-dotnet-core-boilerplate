@@ -12,11 +12,6 @@ using Shared.Core.Exceptions;
 
 namespace Modules.Identity.Core.Exceptions
 {
-    public class IdentityException : CustomException
-    {
-        public IdentityException(string message, List<string> errors = default, HttpStatusCode statusCode = default)
-            : base(message, errors, statusCode)
-        {
-        }
-    }
+    public class IdentityException(string message, List<string> errors = default, HttpStatusCode statusCode = default)
+        : CustomException(message, errors, statusCode);
 }

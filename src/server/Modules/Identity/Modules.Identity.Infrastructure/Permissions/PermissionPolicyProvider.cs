@@ -14,14 +14,9 @@ using Shared.Core.Constants;
 
 namespace Modules.Identity.Infrastructure.Permissions
 {
-    internal class PermissionPolicyProvider : IAuthorizationPolicyProvider
+    internal class PermissionPolicyProvider(IOptions<AuthorizationOptions> options) : IAuthorizationPolicyProvider
     {
-        public DefaultAuthorizationPolicyProvider FallbackPolicyProvider { get; }
-
-        public PermissionPolicyProvider(IOptions<AuthorizationOptions> options)
-        {
-            FallbackPolicyProvider = new DefaultAuthorizationPolicyProvider(options);
-        }
+        public DefaultAuthorizationPolicyProvider FallbackPolicyProvider { get; } = new(options);
 
         public Task<AuthorizationPolicy> GetDefaultPolicyAsync() => FallbackPolicyProvider.GetDefaultPolicyAsync();
 

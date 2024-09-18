@@ -10,16 +10,8 @@ using System;
 
 namespace Shared.Core.Entities 
 {
-    public class EntityReference
+    public class EntityReference(string entity)
     {
-        public EntityReference(string entity)
-        {
-            Entity = entity;
-            MonthYearString = DateTime.Now.ToString("MMyy");
-            LastUpdateOn = DateTime.Now;
-            Count = 1;
-        }
-
         public void Increment()
         {
             LastUpdateOn = DateTime.Now;
@@ -28,12 +20,12 @@ namespace Shared.Core.Entities
 
         public int Id { get; private set; }
 
-        public string Entity { get; private set; }
+        public string Entity { get; private set; } = entity;
 
-        public string MonthYearString { get; private set; }
+        public string MonthYearString { get; private set; } = DateTime.Now.ToString("MMyy");
 
-        public int Count { get; private set; }
+        public int Count { get; private set; } = 1;
 
-        public DateTime LastUpdateOn { get; private set; }
+        public DateTime LastUpdateOn { get; private set; } = DateTime.Now;
     }
 }

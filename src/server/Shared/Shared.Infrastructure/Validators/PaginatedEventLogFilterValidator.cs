@@ -14,12 +14,9 @@ using Shared.DTOs.Identity.EventLogs;
 
 namespace Shared.Infrastructure.Validators
 {
-    public class PaginatedEventLogFilterValidator : PaginatedFilterValidator<Guid, EventLog, PaginatedEventLogsFilter>
+    public class PaginatedEventLogFilterValidator(IStringLocalizer<PaginatedEventLogFilterValidator> localizer)
+        : PaginatedFilterValidator<Guid, EventLog, PaginatedEventLogsFilter>(localizer)
     {
-        public PaginatedEventLogFilterValidator(IStringLocalizer<PaginatedEventLogFilterValidator> localizer)
-            : base(localizer)
-        {
-            // you can override the validation rules here
-        }
+        // you can override the validation rules here
     }
 }

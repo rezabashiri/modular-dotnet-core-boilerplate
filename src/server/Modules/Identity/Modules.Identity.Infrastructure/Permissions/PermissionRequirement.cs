@@ -10,13 +10,8 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Modules.Identity.Infrastructure.Permissions
 {
-    internal class PermissionRequirement : IAuthorizationRequirement
+    internal class PermissionRequirement(string permission) : IAuthorizationRequirement
     {
-        public string Permission { get; private set; }
-
-        public PermissionRequirement(string permission)
-        {
-            Permission = permission;
-        }
+        public string Permission { get; private set; } = permission;
     }
 }

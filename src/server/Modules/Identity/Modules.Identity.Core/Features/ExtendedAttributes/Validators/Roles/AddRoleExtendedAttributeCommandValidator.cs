@@ -13,12 +13,11 @@ using Shared.Core.Interfaces.Serialization;
 
 namespace Modules.Identity.Core.Features.ExtendedAttributes.Validators.Roles
 {
-    public class AddRoleExtendedAttributeCommandValidator : AddExtendedAttributeCommandValidator<string, BoilerplateRole>
+    public class AddRoleExtendedAttributeCommandValidator(
+        IStringLocalizer<AddRoleExtendedAttributeCommandValidator> localizer,
+        IJsonSerializer jsonSerializer)
+        : AddExtendedAttributeCommandValidator<string, BoilerplateRole>(localizer, jsonSerializer)
     {
-        public AddRoleExtendedAttributeCommandValidator(IStringLocalizer<AddRoleExtendedAttributeCommandValidator> localizer, IJsonSerializer jsonSerializer)
-            : base(localizer, jsonSerializer)
-        {
-            // you can override the validation rules here
-        }
+        // you can override the validation rules here
     }
 }

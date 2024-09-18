@@ -12,12 +12,10 @@ using Shared.Core.Features.ExtendedAttributes.Queries.Validators;
 
 namespace Modules.Identity.Core.Features.ExtendedAttributes.Validators.Users
 {
-    public class PaginatedUserExtendedAttributeFilterValidator : PaginatedExtendedAttributeFilterValidator<string, BoilerplateUser>
+    public class PaginatedUserExtendedAttributeFilterValidator(
+        IStringLocalizer<PaginatedUserExtendedAttributeFilterValidator> localizer)
+        : PaginatedExtendedAttributeFilterValidator<string, BoilerplateUser>(localizer)
     {
-        public PaginatedUserExtendedAttributeFilterValidator(IStringLocalizer<PaginatedUserExtendedAttributeFilterValidator> localizer)
-            : base(localizer)
-        {
-            // you can override the validation rules here
-        }
+        // you can override the validation rules here
     }
 }

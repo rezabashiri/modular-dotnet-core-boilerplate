@@ -11,11 +11,7 @@ using System.Net;
 
 namespace Shared.Core.Exceptions
 {
-    public class CustomValidationException : CustomException
-    {
-        public CustomValidationException(IStringLocalizer localizer, List<string> errors)
-            : base(localizer["One or more validation failures have occurred."], errors, HttpStatusCode.BadRequest)
-        {
-        }
-    }
+    public class CustomValidationException(IStringLocalizer localizer, List<string> errors)
+        : CustomException(localizer["One or more validation failures have occurred."], errors,
+            HttpStatusCode.BadRequest);
 }
